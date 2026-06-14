@@ -9,12 +9,6 @@
               cargo = {
                 features = "all";
               };
-
-              procMacro = {
-                ignored = {
-                  leptos_macro = [ "server" ];
-                };
-              };
             };
           };
         };

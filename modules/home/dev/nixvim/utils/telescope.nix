@@ -25,7 +25,6 @@
               enable = true;
               settings.specific_opts.codeactions = true;
             };
-            todo-comments.enable = true;
           };
 
           settings = {
