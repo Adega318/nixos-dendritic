@@ -12,6 +12,7 @@
           opencode
           plasma-manager
           udiskie
+          zen
 
           # DEV
           dev
@@ -38,6 +39,7 @@
           teams-for-linux # teams
           postman # package sender
           chromium
+          krita # paint
         ];
       };
   };

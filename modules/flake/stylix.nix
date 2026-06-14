@@ -44,13 +44,18 @@ in
     {
       imports = [ inputs.stylix.homeModules.stylix ];
       stylix = (stylix pkgs) // {
-        targets.firefox = {
-          profileNames = [ "default" ];
-          colorTheme.enable = true;
-        };
-        targets.librewolf = {
-          profileNames = [ "default" ];
-          colorTheme.enable = true;
+        targets = {
+          firefox = {
+            profileNames = [ "default" ];
+            colorTheme.enable = true;
+          };
+          librewolf = {
+            profileNames = [ "default" ];
+            colorTheme.enable = true;
+          };
+          zen-browser = {
+            profileNames = [ "default" ];
+          };
         };
       };
     };

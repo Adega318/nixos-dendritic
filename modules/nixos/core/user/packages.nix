@@ -7,6 +7,7 @@
         zoxide
         zed-editor
         neovim
+        firefox
       ];
     };
 }
