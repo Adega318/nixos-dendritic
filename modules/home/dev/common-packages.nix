@@ -26,6 +26,7 @@
         wget
         ## MEMORY
         tree
+        parted
         ncdu
         ## SECURITY
         lynis
