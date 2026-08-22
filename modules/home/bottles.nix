@@ -2,12 +2,16 @@
   flake.modules.homeManager.bottles =
     { pkgs, ... }:
     {
-      # HACK: disable check of openldap to enable bottles compilation
+      # HACK: disable check of python.patoolt to enable bottles compilation
       nixpkgs.overlays = [
         (final: prev: {
-          openldap = prev.openldap.overrideAttrs (oldAttrs: {
-            doCheck = false;
-          });
+          python314Packages = prev.python314Packages.overrideScope (
+            pyFinal: pyPrev: {
+              patool = pyPrev.patool.overridePythonAttrs (_: {
+                doCheck = false;
+              });
+            }
+          );
         })
       ];
 
