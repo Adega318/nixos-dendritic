@@ -4,6 +4,12 @@
     module =
       { pkgs, ... }:
       {
+        # TODO: remove permittedInsecurePackages once it's no longer a transitive dependency
+        nixpkgs.config.permittedInsecurePackages = [
+          "electron-40.10.5"
+          "ventoy-1.1.17"
+        ];
+
         imports = with config.flake.modules.homeManager; [
           bottles
           discord
@@ -12,7 +18,6 @@
           opencode
           plasma-manager
           udiskie
-          zen
 
           # DEV
           dev
@@ -22,6 +27,8 @@
           heroic
           lutris
           minecraft
+          ryujinx
+          veloren
 
           # OFFICE
           calibre
@@ -40,6 +47,8 @@
           postman # package sender
           chromium
           krita # paint
+          ventoy # image writer
+          bitwarden-desktop # bitwarden client
         ];
       };
   };

@@ -1,5 +1,9 @@
 {
   flake.modules.homeManager.discord = {
+    nixpkgs.config.permittedInsecurePackages = [
+      "pnpm-10.29.2"
+    ];
+
     programs.vesktop = {
       enable = true;
 
