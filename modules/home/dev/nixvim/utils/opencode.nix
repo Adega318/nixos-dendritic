@@ -1,9 +1,68 @@
 {
   flake.modules.homeManager.nixvim = {
     programs.nixvim = {
-      plugins.opencode = {
-        enable = true;
+      plugins = {
+        opencode = {
+          enable = true;
+        };
+
+        snacks = {
+          enable = true;
+
+          settings = {
+            terminal.enable = true;
+            input.enable = true;
+            picker.enable = true;
+          };
+        };
       };
+
+      extraConfigLua = ''
+        local opencode_cmd = "opencode --port"
+
+        local snacks_terminal_opts = {
+          win = {
+            position = "right",
+            enter = false,
+          },
+        }
+
+        vim.g.opencode_opts = {
+          server = {
+            start = function()
+              require("snacks.terminal").open(
+                opencode_cmd,
+                snacks_terminal_opts
+              )
+            end,
+          },
+        }
+
+        vim.keymap.set({ "n", "t" }, "<C-.>", function()
+          require("snacks.terminal").toggle(
+            opencode_cmd,
+            snacks_terminal_opts
+          )
+        end, { desc = "Toggle OpenCode" })
+
+        vim.api.nvim_create_autocmd("User", {
+          pattern = { "OpencodeEvent:tui.command.execute" },
+          callback = function(args)
+            local event = args.data.event
+
+            if event.properties.command == "prompt.submit" then
+              local win = require("snacks.terminal").get(
+                opencode_cmd,
+                { create = false }
+              )
+
+              if win then
+                win:show()
+              end
+            end
+          end,
+        })
+      '';
 
       keymaps = [
         {
@@ -30,10 +89,9 @@
             "t"
           ];
           key = "<C-.>";
-          action.__raw = ''function() require("opencode").toggle() end'';
-          options.desc = "Toggle opencode";
+          action.__raw = "function() ToggleOpencode() end";
+          options.desc = "Toggle Opencode";
         }
-
         {
           mode = [
             "n"
