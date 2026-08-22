@@ -7,6 +7,8 @@
       enable = true;
       overrideConfig = true;
 
+      session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+
       panels = [
         {
           location = "top";
