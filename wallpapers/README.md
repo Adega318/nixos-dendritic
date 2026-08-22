@@ -7,6 +7,7 @@ Collection of desktop wallpapers used across hosts.
 | `cat.png` | sam (desktop), dean (laptop) |
 | `gigant_cat.png` | — |
 | `hail_mary.png` | — |
+| `linux_atari.png` | — |
 | `nix.png` | — |
 | `pragmata.png` | — |
 
