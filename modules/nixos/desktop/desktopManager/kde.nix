@@ -42,6 +42,7 @@
         kdePackages.isoimagewriter # Write hybrid ISOs to USB
         kdePackages.filelight # Disk space usage viewer
         kdePackages.partitionmanager # Disk and partition management
+        kdePackages.kamoso # Camera app
         hardinfo2 # System benchmarks and hardware info
         wayland-utils # Wayland diagnostic tools
         wl-clipboard # Wayland copy/paste support
