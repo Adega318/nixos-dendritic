@@ -40,6 +40,8 @@
             }
           )
 
+          { nixpkgs.config.allowUnfree = host.allowUnfree; }
+
           module
 
           {
