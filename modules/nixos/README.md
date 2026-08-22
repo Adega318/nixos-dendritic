@@ -6,6 +6,7 @@ This directory contains NixOS system-level modules for core services, hardware s
 
 - `core/`: Fundamental system configuration — bootloader, locale, SSH, user accounts.
 - `desktop/`: Graphical environment, audio, networking, power, gaming, and desktop managers.
+  - `desktopManager/`: KDE Plasma 6, GNOME, COSMIC
 - `services/`: System services — Tailscale mesh VPN, Ollama LLM server.
 
 ## Standalone Modules

@@ -22,7 +22,7 @@ Available under `desktopManager/`:
 |--------|-------------|
 | `kde` | KDE Plasma 6 with custom SDDM (Astronaut theme) |
 | `gnome` | GNOME desktop environment |
-| `cosmic` | COSMIC desktop environment (Pop!\_OS) |
+| `cosmic` | COSMIC desktop environment (Pop!_OS) |
 
 ## Usage
 

@@ -1,7 +1,7 @@
 { config, ... }:
 {
   configurations.nixos.dean = {
-    # Sytem optinos
+    # System options
     stateVersion = "26.05";
     wallpaper = ../../../wallpapers/cat.png;
     base16Scheme = "gruvbox-dark-hard";

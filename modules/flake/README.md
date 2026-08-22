@@ -7,7 +7,7 @@ This directory contains the underlying logic that powers the flake outputs and c
 - `flake-parts.nix`: Integration point for `flake-parts` modules.
 - `nixos.nix`: Defines the `configurations.nixos` option (a lazy attrset of per-host NixOS configs with `system`, `stateVersion`, `allowUnfree`, `wallpaper`, `base16Scheme`, `module`). Reads these options and generates `nixosConfigurations` — each with Stylix theming, Nix settings (GC, experimental-features), networking, and the deferred `module` import.
 - `home.nix`: Defines the `configurations.homeManager` option. Generates `homeConfigurations` by pulling `system`, `allowUnfree`, `wallpaper`, and `base16Scheme` from the corresponding NixOS host config.
-- `stylix.nix`: Declarative theming (dark polarity, Agave Nerd Font, Bibata-Modern-Ice cursor, Noto Color Emoji). Published as both a NixOS module and a Home Manager module, with Firefox/Librewolf theme targets.
+- `stylix.nix`: Declarative theming (dark polarity, Agave Nerd Font, Bibata-Modern-Ice cursor, Noto Color Emoji). Published as both a NixOS module and a Home Manager module, with Firefox/Librewolf/Zen theme targets.
 - `formatter.nix`: Defines the project-wide formatter (`nix fmt` → nixfmt).
 - `systems.nix`: Specifies the standard systems supported by this flake (x86_64-linux, aarch64-linux).
 - `variables.nix`: Defines shared read-only options (`user.username`, `user.email`, `user.hashedPassword`, `rootHashedPassword`, `stateVersion`).

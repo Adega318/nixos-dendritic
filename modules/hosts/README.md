@@ -6,8 +6,8 @@ This directory contains configurations specific to individual machines (hosts).
 
 | Host | Type | Status | NixOS modules | Home modules |
 |------|------|--------|---------------|--------------|
-| `dean/` | Laptop | Active | core, desktop, kde, bluetooth, plymouth, podman, tailscale | dev, firefox, discord, gtk, librewolf, obsidian, onlyoffice, lutris, heroic, plasma-manager, udiskie |
-| `sam/` | Desktop | Active | core, desktop, kde, bluetooth, docker, plymouth, podman, tailscale, ollama, wacom | dev, firefox, discord, gtk, librewolf, opencode, bottles, calibre, obsidian, onlyoffice, lutris, heroic, minecraft, ff14, plasma-manager, udiskie |
+| `dean/` | Laptop | Active | core, desktop, kde, bluetooth, plymouth, podman, tailscale | bottles, discord, gtk, librewolf, plasma-manager, udiskie, dev, lutris, obsidian, onlyoffice |
+| `sam/` | Desktop | Active | core, desktop, kde, bluetooth, docker, plymouth, podman, tailscale, ollama, wacom | bottles, discord, gtk, librewolf, opencode, plasma-manager, udiskie, zen, dev, ff14, heroic, lutris, minecraft, calibre, obsidian, onlyoffice, retroarch, veloren |
 | `castiel/` | Server | *Planned — not yet configured* | — | — |
 
 ## Directory Structure
@@ -24,9 +24,10 @@ Each host directory typically contains:
 
 | Variable | Value |
 |----------|-------|
-| `user.username` | --- |
-| `user.email` | --- |
-| `stateVersion` | `26.05` |
+| `user.username` | `adega` |
+| `user.email` | `eadegafernandez@gmail.com` |
+| `user.hashedPassword` | *set per-host* |
+| `rootHashedPassword` | *set per-host* |
 
 ## Adding a New Host
 

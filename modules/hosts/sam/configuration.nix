@@ -1,9 +1,9 @@
 { config, ... }:
 {
   configurations.nixos.sam = {
-    # Sytem optinos
+    # System options
     stateVersion = "26.05";
-    wallpaper = ../../../wallpapers/cat.png;
+    wallpaper = ../../../wallpapers/linux_atari.png;
     base16Scheme = "gruvbox-dark-hard";
 
     # Modules
@@ -26,7 +26,6 @@
 
           # SERVICES
           tailscale
-          ollama
         ];
 
         config = {

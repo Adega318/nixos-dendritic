@@ -19,24 +19,13 @@ Modules placed anywhere under `modules/` are automatically discovered and made a
 
 - **Dendritic module discovery** — drop a `.nix` file anywhere in `modules/` and it's automatically imported
 - **Per-host configuration** — separate `configuration.nix` + `home.nix` + `hardware-configuration.nix` per machine
-- **Declarative theming** via [Stylix](https://github.com/danth/stylix) — dark theme, Agave Nerd Font, Bibata cursor, Firefox/Librewolf theme targets
+- **Declarative theming** via [Stylix](https://github.com/danth/stylix) — dark theme, Agave Nerd Font, Bibata cursor, Firefox/Librewolf/Zen theme targets
 - **Home Manager** — user-level package and dotfile management for every host
 - **Neovim (Nixvim)** — fully customized editor with LSP, Telescope, Git, Copilot Chat, and polished UI — see [`nixvim`](./modules/home/dev/nixvim/README.md)
 - **KDE Plasma** — declarative desktop configuration via [plasma-manager](https://github.com/nix-community/plasma-manager)
-- **Gaming** — Lutris, Heroic Games Launcher, Minecraft, FF14
+- **Gaming** — Lutris, Heroic Games Launcher, Minecraft, FF14, Retroarch, Veloren
 - **Container runtimes** — Docker and rootless Podman
 - **Flake-parts** — modular, composable flake architecture
-
-## Configuration
-
-Before deploying, set your personal values in [`modules/hosts/variables.nix`](./modules/hosts/variables.nix):
-
-| Variable | Description |
-|---|---|
-| `user.username` | Your Unix username |
-| `user.email` | Your email address (used in Git config) |
-| `user.hashedPassword` | Your user password hash (`mkpasswd -m sha-512`) |
-| `rootHashedPassword` | Root password hash (`mkpasswd -m sha-512`) |
 
 ## Structure
 
@@ -58,6 +47,7 @@ modules/
 ├── nixos/              # Shared NixOS system modules
 │   ├── core/           # Boot, locale, SSH, user accounts
 │   ├── desktop/        # Audio, networking, power, gaming, desktop managers
+│   │   └── desktopManager/  # KDE, GNOME, COSMIC
 │   ├── services/       # Tailscale, Ollama
 │   ├── bluetooth.nix   # Bluetooth hardware support
 │   ├── docker.nix      # Docker container engine
@@ -66,9 +56,9 @@ modules/
 │   ├── vm.nix          # Virtualization support
 │   └── wacom.nix       # Wacom tablet support
 └── home/               # Home Manager user modules
-    ├── dev/            # Developer tools (Alacritty, Git, Zsh, Zoxide, Direnv, Nixvim)
-    ├── games/          # Gaming (Lutris, Heroic, Minecraft, FF14)
-    ├── office/         # Productivity (Obsidian, OnlyOffice)
+    ├── dev/            # Developer tools (Alacritty, Git, Zsh, Zoxide, Direnv, Nixvim, Zed, Antigravity)
+    ├── games/          # Gaming (Lutris, Heroic, Minecraft, FF14, Retroarch, Veloren)
+    ├── office/         # Productivity (Calibre, Obsidian, OnlyOffice)
     ├── bottles.nix     # Windows software containers
     ├── discord.nix
     ├── firefox.nix
@@ -76,7 +66,8 @@ modules/
     ├── librewolf.nix
     ├── opencode.nix
     ├── plasma-manager.nix
-    └── udiskie.nix
+    ├── udiskie.nix
+    └── zen.nix         # Zen browser
 
 wallpapers/             # Desktop wallpapers (5 images) — see wallpapers/README.md
 ```
@@ -84,7 +75,7 @@ wallpapers/             # Desktop wallpapers (5 images) — see wallpapers/READM
 ## Prerequisites
 
 - NixOS with flakes enabled
-- Nix command set to `experimental-features = nix-command flakes` (already default on NixOS)
+- Nix command set to `experimental-features = pipe-operators nix-command flakes` (already default on NixOS)
 
 ## Usage
 
