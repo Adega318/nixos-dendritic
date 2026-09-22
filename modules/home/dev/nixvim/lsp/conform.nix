@@ -11,6 +11,8 @@
           leptosfmt
           # Markdown
           markdownlint-cli
+          # Golang
+          golangci-lint
         ];
 
         plugins.conform-nvim = {
@@ -22,13 +24,14 @@
               timeoutMs = 5000;
             };
             formatters_by_ft = {
-              fsharp = [ "fantomas" ];
-              gleam = [ "gleam" ];
-              go = [
-                "goimports"
-                "gofmt"
+              python = [
+                "ruff_format"
+                "ruff_organize_imports"
               ];
-              kotlin = [ "ktlint" ];
+              go = [
+                "gofmt"
+                "goimports"
+              ];
               nix = [ "nixfmt" ];
               markdown = [ "markdownlint" ];
               sh = [

@@ -4,9 +4,7 @@
       plugins.lint = {
         enable = true;
         lintersByFt = {
-          elixir = [ "credo" ];
           go = [ "golangcilint" ];
-          kotlin = [ "ktlint" ];
           nix = [ "statix" ];
         };
       };

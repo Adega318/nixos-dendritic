@@ -1,22 +1,58 @@
 {
-  flake.modules.homeManager.nixvim = {
+  flake.modules.homeManager.nixvim = { hostname, ... }: {
     programs.nixvim = {
       plugins = {
         lsp = {
           enable = true;
+          inlayHints = true;
           servers = {
             # Bash
             bashls.enable = true;
             # C
             clangd.enable = true;
+            # Golang
+            gopls.enable = true;
             # Nix
-            nixd.enable = true;
+            nixd = {
+              enable = true;
+              settings =
+                let
+                  flake = "(builtins.getFlake (builtins.toString ./.))";
+                in
+                {
+                  nixpkgs = {
+                    expr = "import ${flake}.inputs.nixpkgs { }";
+                  };
+                  options = {
+                    nixos.expr = "${flake}.nixosConfigurations.${hostname}.options";
+                    home-manager.expr = "${flake}.homeConfigurations.${hostname}.options";
+                  };
+                };
+            };
             statix.enable = true;
             # Lua
             lua_ls.enable = true;
             # Python
-            pyright.enable = true;
-            ruff.enable = true;
+            basedpyright = {
+              enable = true;
+              settings = {
+                basedpyright.analysis = {
+                  typeCheckingMode = "standard";
+                  diagnosticMode = "workspace";
+                  autoImportCompletions = true;
+                  autoSearchPaths = true;
+                  useLibraryCodeForTypes = true;
+                  inlayHints = {
+                    callArgumentNames = true;
+                    genericTypes = true;
+                  };
+                };
+              };
+            };
+            ruff = {
+              enable = true;
+              settings.organizeImports = true;
+            };
             # Toml
             taplo.enable = true;
             # Yaml
@@ -25,34 +61,6 @@
             sqls.enable = true;
             # Markdown
             marksman.enable = true;
-
-            jdtls.enable = true;
-            lemminx.enable = true;
-            tflint.enable = true;
-
-            # Packages is set to null to rely on the system wide installed packages
-            # this is done to avoid conflicts with the nixpkgs versions.
-            elixirls = {
-              enable = true;
-              package = null; # default pkgs.elixir-ls
-              cmd = [ "elixir-ls" ];
-            };
-            gleam = {
-              enable = true;
-              package = null; # default pkgs.gleam
-            };
-            gopls = {
-              enable = true;
-              package = null; # default pkgs.gopls
-            };
-            kotlin_language_server = {
-              enable = true;
-              package = null; # default pkgs.kotlin-language-server
-            };
-            prolog_ls = {
-              enable = true;
-              package = null; # default pkgs.swi-prolog;
-            };
           };
           keymaps = {
             silent = true;
