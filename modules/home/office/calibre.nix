@@ -4,7 +4,8 @@
     {
       programs.calibre = {
         enable = true;
-        package = pkgs.calibre.override { unrarSupport = true; };
+        # HACK: temp disable because of update error
+        # package = pkgs.calibre.override { unrarSupport = true; };
       };
     };
 }

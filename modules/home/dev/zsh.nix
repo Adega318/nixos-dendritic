@@ -34,12 +34,16 @@
           gsp = "git stash; git pull";
           gcheck = "git checkout";
           gcredential = "git config credential.helper store";
-          gg = "lazygit";
+          gl = "lazygit";
 
           ":q" = "exit";
         };
 
-        initContent = "pfetch";
+        initContent = ''
+          export GITHUB_TOKEN="$(gh auth token)"
+          export NIX_CONFIG="access-tokens = github.com=$GITHUB_TOKEN"
+          pfetch
+        '';
       };
     };
 }

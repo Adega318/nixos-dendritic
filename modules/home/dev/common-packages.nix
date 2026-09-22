@@ -13,6 +13,8 @@
         ## JAVA
         jdk
         maven
+        ## C
+        gnumake
 
         # COMMANDS
         ## COMPRESED

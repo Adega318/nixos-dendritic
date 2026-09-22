@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  flake.modules.homeManager.git = {
+  flake.modules.homeManager.git = { pkgs, ... }: {
     programs = {
       git = {
         enable = true;
@@ -15,5 +15,9 @@
       };
       lazygit.enable = true;
     };
+
+    home.packages = with pkgs; [
+      gh # github cli
+    ];
   };
 }
