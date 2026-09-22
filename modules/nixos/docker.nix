@@ -10,6 +10,7 @@
       environment.systemPackages = with pkgs; [
         dive # look into docker image layers
         docker-compose # start group of containers for dev
+        lazydocker
       ];
     };
 }
