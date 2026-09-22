@@ -35,7 +35,6 @@
         kdePackages.kolourpaint # Simple paint program
         kdePackages.ksystemlog # System log viewer
         kdePackages.sddm-kcm # SDDM configuration module
-        kdePackages.plasma-browser-integration # Browser integration
         kdiff3 # File/directory comparison tool
 
         # Hardware/System Utilities (Optional)
@@ -47,6 +46,19 @@
         wayland-utils # Wayland diagnostic tools
         wl-clipboard # Wayland copy/paste support
         vlc # Media player
+      ];
+
+      environment.plasma6.excludePackages = with pkgs; [
+        kdePackages.elisa # Music player
+        kdePackages.kdepim-runtime # Akonadi agents
+        kdePackages.kmahjongg
+        kdePackages.kmines
+        kdePackages.konversation # IRC client
+        kdePackages.kpat # Solitaire
+        kdePackages.ksudoku
+        kdePackages.ktorrent
+        kdePackages.plasma-browser-integration
+        kdePackages.kate
       ];
     };
 }
