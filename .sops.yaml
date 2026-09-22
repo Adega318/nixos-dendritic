@@ -1,0 +1,29 @@
+keys:
+  - &adega_sam age1zt9k0fc86ufpapm6vw7duxh0p4qztl9f6wytn9q8ntqr9sxjqdtscq85e5
+  - &sam age1ky740kgkh83w8vxge5vtjddtutgx5s80rm54wjc8hpjmgrd59scsytke9u
+
+  - &adega_dean age18m2xnvrjpee9kkxy2gl28s94k4hj7nladhkv5g2r3flxga8dc5fs7yce8j
+  - &dean age195ytxndtx83emzafg98zlpfy55ul84mcheg849w7mufeq6ewmcnq3ctjml
+
+creation_rules:
+  - path_regex: secrets/sam/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *sam
+          - *dean
+          - *adega_sam
+          - *adega_dean
+
+  - path_regex: secrets/dean/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *dean
+          - *adega_sam
+          - *adega_dean
+
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *sam
+          - *adega_sam
+          - *adega_dean

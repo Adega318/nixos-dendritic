@@ -28,7 +28,13 @@
       { module, ... }:
       inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+
+        extraSpecialArgs = {
+          hostname = name;
+        };
+
         modules = [
+          config.flake.modules.homeManager.sops
           config.flake.modules.homeManager.stylix
           (
             { pkgs, ... }:

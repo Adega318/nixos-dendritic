@@ -4,7 +4,7 @@
     module =
       { pkgs, ... }:
       {
-        # TODO: remove permittedInsecurePackages once it's no longer a transitive dependency
+        # HACK: remove permittedInsecurePackages once it's no longer a transitive dependency
         nixpkgs.config.permittedInsecurePackages = [
           "electron-40.10.5"
           "ventoy-1.1.17"
@@ -13,7 +13,10 @@
         imports = with config.flake.modules.homeManager; [
           bottles
           discord
+          easyeffects
           gtk
+          iptv
+          latex
           librewolf
           opencode
           plasma-manager
@@ -31,6 +34,7 @@
           veloren
 
           # OFFICE
+          anki
           calibre
           obsidian
           onlyoffice
@@ -41,14 +45,14 @@
           authenticator # Two factor authenticatort
           nextcloud-client # nextcloud desktop
           portfolio # invesment manager
+          yacreader # comic reader
           dbeaver-bin # db manager
           qbittorrent-enhanced # torrent
           teams-for-linux # teams
-          postman # package sender
+          bruno # package sender
           chromium
           krita # paint
           ventoy # image writer
-          bitwarden-desktop # bitwarden client
         ];
       };
   };

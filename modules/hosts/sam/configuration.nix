@@ -7,29 +7,31 @@
     base16Scheme = "gruvbox-dark-hard";
 
     # Modules
-    module =
-      { ... }:
-      {
-        imports = with config.flake.modules.nixos; [
-          bluetooth
-          docker
-          plymouth
-          podman
-          wacom
+    module = {
+      imports = with config.flake.modules.nixos; [
+        bluetooth
+        docker
+        plymouth
+        podman
+        wacom
 
-          # CORE
-          core
+        # CORE
+        core
 
-          # DESKTOP
-          desktop
-          kde
+        # DESKTOP
+        desktop
+        kde
+        bitwarden
+        proton
 
-          # SERVICES
-          tailscale
-        ];
+        # SERVICES
+        tailscale
+      ];
 
-        config = {
-        };
-      };
+      openssh.extraConfig = ''
+        Host ssh-gitea.eadega.com
+          ProxyCommand cloudflared access ssh --hostname %h
+      '';
+    };
   };
 }

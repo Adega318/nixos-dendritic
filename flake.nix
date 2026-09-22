@@ -21,6 +21,12 @@
     };
     import-tree.url = "github:vic/import-tree";
 
+    # Secret management
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Theming
     stylix = {
       url = "github:danth/stylix";
@@ -56,6 +62,12 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
       };
+    };
+
+    # Colibri
+    colibri = {
+      url = "github:JustVugg/colibri";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

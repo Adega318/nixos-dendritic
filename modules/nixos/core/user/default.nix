@@ -1,16 +1,19 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  flakeConfig = config;
+in
 {
-  flake.modules.nixos.user = {
+  flake.modules.nixos.user = { config, ... }: {
     users.users = {
       root = {
         isSystemUser = true;
-        hashedPassword = config.rootHashedPassword;
+        hashedPasswordFile = lib.mkDefault config.sops.secrets."system/rootPassword".path;
       };
 
-      ${config.user.username} = {
+      ${flakeConfig.user.username} = {
         isNormalUser = true;
-        description = config.user.username;
-        inherit (config.user) hashedPassword;
+        description = flakeConfig.user.username;
+        hashedPasswordFile = lib.mkDefault config.sops.secrets."system/userPassword".path;
       };
     };
   };
