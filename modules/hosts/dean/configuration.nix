@@ -3,8 +3,8 @@
   configurations.nixos.dean = {
     # System options
     stateVersion = "26.05";
-    wallpaper = ../../../wallpapers/cat.png;
-    base16Scheme = "gruvbox-dark-hard";
+    wallpaper = ../../../wallpapers/lighthouse.png;
+    base16Scheme = "catppuccin-mocha";
 
     # Modules
     module = {
