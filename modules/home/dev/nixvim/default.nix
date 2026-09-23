@@ -43,6 +43,9 @@
           smartcase = true;
           wildmode = "list:longest";
 
+          spell = true;
+          spelllang = "en_us";
+
           swapfile = false;
           undofile = true; # Build-in persistent undo
 

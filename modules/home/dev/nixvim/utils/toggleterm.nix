@@ -8,6 +8,15 @@
         };
       };
 
+      autoCmd = [
+        {
+          event = "TermOpen";
+          command = "setlocal nospell";
+          group = "toggleterm";
+        }
+      ];
+      autoGroups.toggleterm.clear = true;
+
       keymaps = [
         {
           # Escape terminal mode using ESC

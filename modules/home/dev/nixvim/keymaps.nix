@@ -53,7 +53,7 @@
           };
         }
 
-        # --- Window Resizing ---
+        # --- Window Re sizing ---
         {
           mode = "n";
           key = "<C-Up>";
@@ -177,6 +177,12 @@
           key = "<leader>Q";
           action = "<CMD>qa<CR>";
           options.desc = "Quit All";
+        }
+        {
+          mode = "n";
+          key = "<F7>";
+          action = "<CMD>set spell!<CR>";
+          options.desc = "Toggle spell checking";
         }
       ];
     };

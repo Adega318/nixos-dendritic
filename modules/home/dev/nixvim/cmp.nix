@@ -21,6 +21,10 @@
           enable = true;
         };
 
+        cmp-spell = {
+          enable = true;
+        };
+
         cmp_luasnip = {
           enable = true;
         };
@@ -40,6 +44,7 @@
             sources = [
               { name = "nvim_lsp"; }
               { name = "luasnip"; }
+              { name = "spell"; }
               {
                 name = "buffer";
                 option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
