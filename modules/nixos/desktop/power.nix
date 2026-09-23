@@ -1,23 +1,27 @@
 {
-  flake.modules.nixos.power = {
-    services = {
-      power-profiles-daemon.enable = true;
+  flake.modules.nixos.power =
+    { pkgs, ... }:
+    {
+      services = {
+        power-profiles-daemon.enable = true;
 
-      upower = {
-        enable = true;
-        percentageLow = 20;
-        percentageCritical = 10;
-        percentageAction = 5;
-        criticalPowerAction = "Hibernate";
+        upower = {
+          enable = true;
+          percentageLow = 20;
+          percentageCritical = 10;
+          percentageAction = 5;
+          criticalPowerAction = "Hibernate";
+        };
+
+        thermald.enable = false;
       };
 
-      thermald.enable = false;
+      powerManagement = {
+        enable = true;
+        powertop.enable = true;
+        powerUpCommands = ''
+          ${pkgs.powertop}/bin/powertop --auto-tune
+        '';
+      };
     };
-
-    powerManagement = {
-      enable = true;
-      cpuFreqGovernor = "powersave";
-      powertop.enable = false;
-    };
-  };
 }

@@ -26,6 +26,7 @@
         ];
         initrd.kernelModules = [ ];
         kernelModules = [ "kvm-amd" ];
+        kernelParams = [ "nmi_watchdog=0" ];
         extraModulePackages = [ ];
       };
 
