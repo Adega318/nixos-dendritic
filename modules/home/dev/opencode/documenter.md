@@ -2,8 +2,14 @@
 description: Code documentation agent
 mode: all
 permission:
-edit: allow
-bash: deny
+  edit: deny
+  bash:
+    "*": allow
+    "git diff": allow
+    "git log*": allow
+    "grep *": allow
+    "rm *": ask
+  webfetch: deny
 ---
 
 # Code Documentation Agent
