@@ -23,5 +23,9 @@
           extraPackages = [ custom-sddm ];
         };
       };
+
+      environment.systemPackages = [
+        custom-sddm
+      ];
     };
 }

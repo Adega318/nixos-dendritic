@@ -8,9 +8,6 @@
       };
 
       environment.systemPackages = with pkgs; [
-        # SDDM theme
-        custom-sddm
-
         # KDE Utilities
         kdePackages.discover # Optional: Software center for Flatpaks/firmware updates
         kdePackages.kcalc # Calculator
