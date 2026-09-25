@@ -42,15 +42,32 @@
               end
             '';
             sources = [
-              { name = "nvim_lsp"; }
-              { name = "luasnip"; }
-              { name = "spell"; }
+              {
+                name = "nvim_lsp";
+                priority = 1000;
+              }
+              {
+                name = "luasnip";
+                priority = 850;
+              }
+              {
+                name = "nvim_lua";
+                priority = 650;
+              }
+              {
+                name = "path";
+                priority = 450;
+              }
               {
                 name = "buffer";
                 option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+                priority = 350;
+
               }
-              { name = "nvim_lua"; }
-              { name = "path"; }
+              {
+                name = "spell";
+                priority = 300;
+              }
             ];
 
             formatting = {
