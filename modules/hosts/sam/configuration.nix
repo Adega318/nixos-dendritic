@@ -26,6 +26,7 @@
         proton
 
         # SERVICES
+        glances
         tailscale
       ];
 
@@ -33,6 +34,8 @@
         Host ssh-gitea.eadega.com
           ProxyCommand cloudflared access ssh --hostname %h
       '';
+
+      glances.openTailscale = true;
     };
   };
 }
