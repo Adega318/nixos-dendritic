@@ -69,6 +69,12 @@
       url = "github:JustVugg/colibri";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Pportainer
+    portainer-on-nixos = {
+      url = "gitlab:cbleslie/portainer-on-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
