@@ -1,24 +1,9 @@
 {
   flake.modules.nixos.kde =
-    { pkgs, config, ... }:
-    let
-      custom-sddm = pkgs.sddm-astronaut.override {
-        themeConfig = {
-          Background = "${config.stylix.image}";
-          Font = config.stylix.fonts.serif.name;
-        };
-      };
-    in
+    { pkgs, ... }:
     {
       services = {
         desktopManager.plasma6.enable = true;
-        displayManager.sddm = {
-          enable = true;
-          wayland.enable = true;
-          autoNumlock = true;
-          theme = "sddm-astronaut-theme";
-          extraPackages = [ custom-sddm ];
-        };
         xserver.enable = true;
       };
 

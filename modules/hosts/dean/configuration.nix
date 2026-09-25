@@ -18,8 +18,9 @@
         core
 
         # DESKTOP
-        desktop
+        sddm
         kde
+        desktop
         fingerprint
         bitwarden
 

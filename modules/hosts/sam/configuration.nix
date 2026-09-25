@@ -19,8 +19,9 @@
         core
 
         # DESKTOP
-        desktop
+        sddm
         kde
+        desktop
         bitwarden
         proton
 
