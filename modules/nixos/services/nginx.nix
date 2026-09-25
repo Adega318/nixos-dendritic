@@ -1,11 +1,10 @@
 {
   flake.modules.nixos.nginx = { config, lib, ... }: {
-    options.nginx = {
-      ports = lib.mkOption {
-        type = lib.types.listOf lib.types.port;
-        description = "List of open ports";
-      };
+    options.nginx.ports = lib.mkOption {
+      type = lib.types.listOf lib.types.port;
+      description = "List of open ports";
     };
+
     config = {
       services.nginx = {
         enable = true;

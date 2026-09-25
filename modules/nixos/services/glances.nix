@@ -6,8 +6,8 @@
         default = null;
         description = "Domain to expose Glances through Nginx.";
       };
-      openFirewall = lib.mkEnableOption "Open the Glances port in the general firewall.";
-      openTailscale = lib.mkEnableOption "Open the Glances port on the Tailscale interface.";
+      openFirewall = lib.mkEnableOption "Open firewall.";
+      openTailscale = lib.mkEnableOption "Open firewall on the Tailscale interface.";
     };
 
     config = {
