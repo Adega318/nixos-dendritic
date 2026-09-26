@@ -36,11 +36,16 @@
           };
         };
 
-        networking.firewall.interfaces.tailscale0.allowedTCPPorts =
+        networking.firewall.interfaces.${config.services.tailscale.interfaceName} =
           lib.mkIf config.portainer.openTailscale
-            [
-              config.services.portainer.port
-            ];
+            {
+              allowedTCPPorts = [
+                config.services.portainer.port
+              ];
+              allowedUDPPorts = [
+                config.services.portainer.port
+              ];
+            };
       };
     };
 }

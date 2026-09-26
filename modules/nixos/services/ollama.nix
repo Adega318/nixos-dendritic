@@ -24,9 +24,16 @@
           inherit (config.ollama) openFirewall;
         };
 
-        networking.firewall.interfaces.tailscale0.allowedTCPPorts = lib.mkIf config.ollama.openTailscale [
-          config.services.ollama.port
-        ];
+        networking.firewall.interfaces.${config.services.tailscale.interfaceName} =
+          lib.mkIf config.ollama.openTailscale
+            {
+              allowedTCPPorts = [
+                config.services.ollama.port
+              ];
+              allowedUDPPorts = [
+                config.services.ollama.port
+              ];
+            };
       };
     };
 }

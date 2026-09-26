@@ -27,9 +27,16 @@
         };
       };
 
-      networking.firewall.interfaces.tailscale0.allowedTCPPorts = lib.mkIf config.glances.openTailscale [
-        config.services.glances.port
-      ];
+      networking.firewall.interfaces.${config.services.tailscale.interfaceName} =
+        lib.mkIf config.glances.openTailscale
+          {
+            allowedTCPPorts = [
+              config.services.glances.port
+            ];
+            allowedUDPPorts = [
+              config.services.glances.port
+            ];
+          };
     };
   };
 }

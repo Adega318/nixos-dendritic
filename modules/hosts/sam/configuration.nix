@@ -36,8 +36,8 @@
           ProxyCommand cloudflared access ssh --hostname %h
       '';
 
-      glances.openTailscale = true;
       cockpit.openTailscale = true;
+      glances.openTailscale = true;
     };
   };
 }

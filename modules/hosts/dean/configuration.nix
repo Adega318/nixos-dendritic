@@ -25,6 +25,8 @@
         bitwarden
 
         # SERVICES
+        cockpit
+        glances
         tailscale
         proton
       ];
@@ -33,6 +35,9 @@
         Host ssh-gitea.eadega.com
           ProxyCommand cloudflared access ssh --hostname %h
       '';
+
+      cockpit.openTailscale = true;
+      glances.openTailscale = true;
     };
   };
 }

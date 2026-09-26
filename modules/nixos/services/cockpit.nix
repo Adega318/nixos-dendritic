@@ -56,9 +56,16 @@
           };
         };
 
-        networking.firewall.interfaces.tailscale0.allowedTCPPorts = lib.mkIf config.cockpit.openTailscale [
-          config.services.cockpit.port
-        ];
+        networking.firewall.interfaces.${config.services.tailscale.interfaceName} =
+          lib.mkIf config.cockpit.openTailscale
+            {
+              allowedTCPPorts = [
+                config.services.cockpit.port
+              ];
+              allowedUDPPorts = [
+                config.services.cockpit.port
+              ];
+            };
       };
     };
 }
