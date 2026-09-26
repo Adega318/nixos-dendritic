@@ -2,23 +2,12 @@
   flake.modules.nixos.tailscale =
     { config, pkgs, ... }:
     {
-      services = {
-        tailscale = {
-          enable = true;
-          openFirewall = true;
-          extraUpFlags = [ "--accept-dns=true" ];
-        };
-        resolved = {
-          enable = true;
-          settings.Resolve.DNSSEC = false;
-        };
-      };
+      services.tailscale.enable = true;
 
       networking = {
         nftables.enable = true;
         firewall = {
-          checkReversePath = "loose";
-          trustedInterfaces = [ "tailscale0" ];
+          trustedInterfaces = [ config.services.tailscale.interfaceName ];
           allowedUDPPorts = [ config.services.tailscale.port ];
         };
       };
