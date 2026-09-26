@@ -94,6 +94,10 @@
             system.stateVersion = stateVersion;
           }
         ];
+
+        specialArgs = {
+          hostname = name;
+        };
       }
     );
 

@@ -26,6 +26,7 @@
         proton
 
         # SERVICES
+        cockpit
         glances
         tailscale
       ];
@@ -36,6 +37,7 @@
       '';
 
       glances.openTailscale = true;
+      cockpit.openTailscale = true;
     };
   };
 }
