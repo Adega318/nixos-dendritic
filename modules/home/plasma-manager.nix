@@ -67,7 +67,7 @@
                     "applications:librewolf.desktop"
                     "applications:Alacritty.desktop"
                     "applications:dev.zed.Zed.desktop"
-                    "applications:obsidian.desktop"
+                    "applications:md.obsidian.Obsidian.desktop"
                   ];
                 };
               }
