@@ -31,23 +31,23 @@
           anki
           obsidian
           onlyoffice
-        ];
-
-        home.packages = with pkgs; [
-          winboat # windows as a container
-          nextcloud-client # nextcloud desktop
-          yacreader # comic reader
-          portfolio # invesment manager
-          dbeaver-bin # db manager
-          qbittorrent-enhanced # torrent
-          teams-for-linux # teams
-          bruno # package sender
+          portfolio
         ];
 
         plasma-manager = {
           override = false;
           layouts = [ { layout = "es"; } ];
         };
+
+        home.packages = with pkgs; [
+          winboat # windows as a container
+          nextcloud-client # nextcloud desktop
+          yacreader # comic reader
+          dbeaver-bin # db manager
+          qbittorrent-enhanced # torrent
+          teams-for-linux # teams
+          bruno # package sender
+        ];
       };
   };
 }

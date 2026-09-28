@@ -38,13 +38,13 @@
           calibre
           obsidian
           onlyoffice
+          portfolio
         ];
 
         home.packages = with pkgs; [
           winboat # windows as a container
           authenticator # Two factor authenticatort
           nextcloud-client # nextcloud desktop
-          portfolio # invesment manager
           yacreader # comic reader
           dbeaver-bin # db manager
           qbittorrent-enhanced # torrent
