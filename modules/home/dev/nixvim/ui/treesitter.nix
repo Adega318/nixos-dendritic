@@ -1,10 +1,13 @@
 {
-  flake.modules.homeManager.nixvim = {
+  flake.modules.homeManager.nixvim = { pkgs, ... }: {
     programs.nixvim = {
       plugins = {
         treesitter = {
           enable = true;
           nixGrammars = true;
+          grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+            html
+          ];
           settings = {
             highlight.enable = true;
             indent.enable = true;

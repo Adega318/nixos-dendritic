@@ -13,11 +13,15 @@
           markdownlint-cli
           # Golang
           golangci-lint
-          # Js, CSS, HTML, Yaml, Markdown, GraphQL
-          prettierd
+          # Js, CSS, Yaml, Markdown, GraphQL
           prettier
+          # HTML
+          djlint
           # spell
           codespell
+          # Shell
+          shellharden
+          shfmt
         ];
 
         plugins.conform-nvim = {
@@ -40,7 +44,6 @@
               nix = [ "nixfmt" ];
               markdown = [
                 "markdownlint"
-                "prettierd"
                 "prettier"
               ];
               sh = [
@@ -56,19 +59,15 @@
                 "leptosfmt"
               ];
               javascript = [
-                "prettierd"
                 "prettier"
               ];
               html = [
-                "prettierd"
-                "prettier"
+                "djlint"
               ];
               css = [
-                "prettierd"
                 "prettier"
               ];
               yaml = [
-                "prettierd"
                 "prettier"
               ];
               "*" = [ "codespell" ];

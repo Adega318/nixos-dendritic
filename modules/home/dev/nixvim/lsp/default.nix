@@ -57,6 +57,8 @@
             taplo.enable = true;
             # Yaml
             yamlls.enable = true;
+            # Html
+            # html.enable = true;
             # SQL
             sqls.enable = true;
             # Markdown
