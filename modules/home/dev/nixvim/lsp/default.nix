@@ -58,7 +58,9 @@
             # Yaml
             yamlls.enable = true;
             # Html
-            # html.enable = true;
+            html.enable = true;
+            # Css
+            cssls.enable = true;
             # SQL
             sqls.enable = true;
             # Markdown
