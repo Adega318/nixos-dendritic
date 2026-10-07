@@ -17,8 +17,6 @@
           prettier
           # HTML
           djlint
-          # spell
-          codespell
           # Shell
           shellharden
           shfmt
@@ -70,7 +68,6 @@
               yaml = [
                 "prettier"
               ];
-              "*" = [ "codespell" ];
             };
           };
         };

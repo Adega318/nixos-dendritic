@@ -48,6 +48,9 @@
                 enable = true;
                 settings.organizeImports = true;
               };
+              # Docker
+              dockerls.enable = true;
+              docker_compose_language_service.enable = true;
               # Toml
               taplo.enable = true;
               # Yaml
