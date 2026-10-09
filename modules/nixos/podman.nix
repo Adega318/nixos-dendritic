@@ -1,16 +1,31 @@
+{ config, ... }:
 {
   flake.modules.nixos.podman =
     { pkgs, ... }:
     {
-      virtualisation.podman = {
-        enable = true;
-        defaultNetwork.settings.dns_enabled = true;
+      virtualisation = {
+        podman = {
+          enable = true;
+          dockerCompat = true;
+          defaultNetwork.settings.dns_enabled = true;
+        };
+        oci-containers.backend = "podman";
       };
 
-      environment.systemPackages = with pkgs; [
-        dive # look into docker image layers
-        podman-tui # status of containers in the terminal
-        podman-compose # start group of containers for dev
-      ];
+      users.extraGroups.podman.members = [ config.user.username ];
+
+      environment = {
+        systemPackages = with pkgs; [
+          dive # look into docker image layers
+          podman-tui # status of containers in the terminal
+          podman-desktop # desktop app for podman
+          kubectl
+          podman-compose
+          lazydocker
+        ];
+        sessionVariables = {
+          PODMAN_COMPOSE_WARNING_LOGS = "false";
+        };
+      };
     };
 }

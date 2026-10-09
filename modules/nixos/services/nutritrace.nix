@@ -38,10 +38,7 @@
       };
 
       config = {
-        virtualisation.docker.enable = true;
-
         virtualisation.oci-containers = {
-          backend = "docker";
           containers.nutritrace = {
             user = "${toString config.users.users.${config.nutritrace.user}.uid}:${
               toString config.users.groups.${config.nutritrace.group}.gid

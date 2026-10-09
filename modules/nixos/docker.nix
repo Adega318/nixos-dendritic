@@ -3,7 +3,10 @@
   flake.modules.nixos.docker =
     { pkgs, ... }:
     {
-      virtualisation.docker.enable = true;
+      virtualisation = {
+        docker.enable = true;
+        oci-containers.backend = "docker";
+      };
 
       users.extraGroups.docker.members = [ config.user.username ];
 
