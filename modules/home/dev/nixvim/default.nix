@@ -43,7 +43,7 @@
           smartcase = true;
           wildmode = "list:longest";
 
-          spell = true;
+          spell = false;
           spelllang = "en_us";
 
           swapfile = false;
