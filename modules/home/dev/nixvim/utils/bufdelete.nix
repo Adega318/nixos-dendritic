@@ -14,9 +14,17 @@
         {
           mode = "n";
           key = "<leader>bw";
-          action = "<CMD>Bwipeout<CR>";
+          action = "<CMD>%bdelete<CR>";
           options = {
-            desc = "Wipe Buffers";
+            desc = "Wipe All Buffers";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>bo";
+          action = "<CMD>let cur=bufnr('%') | bufdo if bufnr('%') != cur | bdelete | endif<CR>";
+          options = {
+            desc = "Delete Other Buffers";
           };
         }
       ];
