@@ -72,7 +72,7 @@
 
     # Pportainer
     portainer-on-nixos = {
-      url = "gitlab:cbleslie/portainer-on-nixos";
+      url = "git+https://gitlab.com/cbleslie/portainer-on-nixos.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
