@@ -15,6 +15,7 @@
           discord
           easyeffects
           gtk
+          latex
           librewolf
           opencode
           plasma-manager
