@@ -11,6 +11,9 @@
         extraPackages = tpkgs: {
           inherit (tpkgs)
             scheme-basic
+            latexmk
+            chktex
+            latexindent
 
             # ── Collections ──────────────────────────────
             collection-fontsrecommended

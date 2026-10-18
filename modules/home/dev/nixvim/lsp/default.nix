@@ -63,6 +63,8 @@
               sqls.enable = true;
               # Markdown
               marksman.enable = true;
+              # Latex
+              texlab.enable = true;
             };
             keymaps = {
               silent = true;
