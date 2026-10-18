@@ -53,8 +53,8 @@
                 "shfmt"
               ];
               rust = [
-                "rustfmt"
                 "leptosfmt"
+                "rustfmt"
               ];
               javascript = [
                 "prettier"
@@ -69,6 +69,17 @@
                 "prettier"
               ];
             };
+
+            formatters.leptosfmt.condition.__raw = ''
+              function(_, ctx)
+                local manifest = vim.fs.find("Cargo.toml", { path = ctx.dirname, upward = true })[1]
+                if not manifest then return false end
+                for line in io.lines(manifest) do
+                  if line:match("^%s*leptos") then return true end
+                end
+                return false
+              end
+            '';
           };
         };
       };
