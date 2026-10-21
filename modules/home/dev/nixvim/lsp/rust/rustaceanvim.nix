@@ -70,13 +70,18 @@
                 autoimport.enable = true;
               };
               inlayHints = {
-                lifetimeElisionHints = {
-                  enable = "always";
-                  useParameterNames = true;
-                };
-                closureReturnTypeHints.enable = "with_block";
-                bindingModeHints.enable = true;
+                maxLength = 10;
+                typeHints.enable = true;
+                parameterHints.enable = false;
+
                 chainingHints.enable = true;
+                bindingModeHints.enable = true;
+
+                closureReturnTypeHints.enable = "with_block";
+                lifetimeElisionHints.enable = "skip_trivial";
+
+                expressionAdjustmentHints.enable = "never";
+                implicitDrops.enable = false;
               };
               lens = {
                 enable = true;
