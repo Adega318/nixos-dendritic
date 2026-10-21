@@ -11,6 +11,21 @@
         enable = true;
         settings = {
           server = {
+            # Don't show rust-analyzer server status/health notifications
+            status_notify_level = false;
+
+            # Swallow `window/showMessage` notifications sent by rust-analyzer,
+            # so they don't pop up in nvim (noice/notify).
+            # Errors are still available via `:RustLsp logFile`.
+            handlers."window/showMessage".__raw = ''
+              function(err, result, ctx, config)
+                local client = ctx and vim.lsp.get_client_by_id(ctx.client_id)
+                if client and client.name ~= "rust-analyzer" then
+                  return vim.lsp.handlers["window/showMessage"](err, result, ctx, config)
+                end
+              end
+            '';
+
             on_attach.__raw = ''
               function(_, bufnr)
                 local map = function(lhs, cmd, desc)
@@ -75,6 +90,8 @@
                 ".github"
                 ".direnv"
               ];
+              # Don't send the "can't find Cargo.toml" notification
+              notifications.cargoTomlNotFound = false;
             };
           };
 
