@@ -7,7 +7,7 @@
         # HACK: remove permittedInsecurePackages once it's no longer a transitive dependency
         nixpkgs.config.permittedInsecurePackages = [
           "electron-40.10.5"
-          "ventoy-1.1.17"
+          "ventoy-1.1.18"
         ];
 
         imports = with config.flake.modules.homeManager; [
