@@ -10,11 +10,11 @@ Modules placed anywhere under `modules/` are automatically discovered and made a
 
 ## Hosts
 
-| Host | Type | Hardware | Desktop | Enabled NixOS Modules | Enabled Home Modules |
-| ------ | ------ | ---------- | --------- | ----------------------- | ---------------------- |
-| `sam` | Desktop | AMD CPU/GPU | KDE Plasma 6 (SDDM Astronaut) | `core`, `desktop`, `kde`, `bluetooth`, `docker`, `podman`, `plymouth`, `wacom`, `tailscale` | `bottles`, `discord`, `easyeffects`, `gtk`, `iptv`, `latex`, `librewolf`, `plasma-manager`, `udiskie`, `opencode`, `dev` (incl. `nixvim`), `ff14`, `heroic`, `lutris`, `minecraft`, `ryujinx`, `veloren`, `calibre`, `obsidian`, `onlyoffice` + `home.packages` (`winboat`, `authenticator`, `nextcloud-client`, `portfolio`, `yacreader`, `dbeaver-bin`, `qbittorrent-enhanced`, `teams-for-linux`, `bruno`, `chromium`, `krita`, `ventoy`, `bitwarden-desktop`) |
-| `dean` | Laptop | AMD CPU/GPU | KDE Plasma 6 (SDDM Astronaut) | `core`, `desktop`, `kde`, `fingerprint`, `bluetooth`, `docker`, `podman`, `plymouth`, `tailscale` | `bottles`, `discord`, `easyeffects`, `gtk`, `librewolf`, `plasma-manager`, `udiskie`, `opencode`, `dev` (incl. `nixvim`), `heroic`, `lutris`, `obsidian`, `onlyoffice` + `home.packages` (`winboat`, `nextcloud-client`, `yacreader`, `portfolio`, `dbeaver-bin`, `qbittorrent-enhanced`, `teams-for-linux`, `bruno`, `bitwarden-desktop`) + `plasma-manager.layouts = [{ layout = "es"; }]` |
-| `castiel` | Server | — | — | *Planned — not yet configured* | *Planned* |
+| Host      | Type    | Hardware    | Desktop                       | Enabled NixOS Modules                                                                             | Enabled Home Modules                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| --------- | ------- | ----------- | ----------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sam`     | Desktop | AMD CPU/GPU | KDE Plasma 6 (SDDM Astronaut) | `core`, `desktop`, `kde`, `bluetooth`, `docker`, `podman`, `plymouth`, `wacom`, `tailscale`       | `bottles`, `discord`, `easyeffects`, `gtk`, `iptv`, `latex`, `librewolf`, `plasma-manager`, `udiskie`, `opencode`, `dev` (incl. `nixvim`), `ff14`, `heroic`, `lutris`, `minecraft`, `ryujinx`, `veloren`, `calibre`, `obsidian`, `onlyoffice` + `home.packages` (`winboat`, `authenticator`, `nextcloud-client`, `portfolio`, `yacreader`, `dbeaver-bin`, `qbittorrent-enhanced`, `teams-for-linux`, `bruno`, `chromium`, `krita`, `ventoy`, `bitwarden-desktop`) |
+| `dean`    | Laptop  | AMD CPU/GPU | KDE Plasma 6 (SDDM Astronaut) | `core`, `desktop`, `kde`, `fingerprint`, `bluetooth`, `docker`, `podman`, `plymouth`, `tailscale` | `bottles`, `discord`, `easyeffects`, `gtk`, `librewolf`, `plasma-manager`, `udiskie`, `opencode`, `dev` (incl. `nixvim`), `heroic`, `lutris`, `obsidian`, `onlyoffice` + `home.packages` (`winboat`, `nextcloud-client`, `yacreader`, `portfolio`, `dbeaver-bin`, `qbittorrent-enhanced`, `teams-for-linux`, `bruno`, `bitwarden-desktop`) + `plasma-manager.layouts = [{ layout = "es"; }]`                                                                      |
+| `castiel` | Server  | —           | —                             | _Planned — not yet configured_                                                                    | _Planned_                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 Wallpapers and base16 schemes are per-host (`wallpaper`, `base16Scheme`) — see [`wallpapers/`](./wallpapers/README.md).
 
@@ -149,9 +149,9 @@ This configuration uses [sops-nix](https://github.com/Mic92/sops-nix) with [age]
 
 ### Current secrets
 
-| Secret | sopsFile | Used by |
-|--------|----------|---------|
-| `system/rootPassword` | `secrets/auth.yaml` | `users.users.root.initialHashedPassword` |
+| Secret                | sopsFile            | Used by                                   |
+| --------------------- | ------------------- | ----------------------------------------- |
+| `system/rootPassword` | `secrets/auth.yaml` | `users.users.root.initialHashedPassword`  |
 | `system/userPassword` | `secrets/auth.yaml` | `users.users.adega.initialHashedPassword` |
 
 Defined in `modules/flake/sops.nix:16-19`.
@@ -169,16 +169,19 @@ nix shell nixpkgs#sops -c sops secrets/auth.yaml
 ### Adding a new secret
 
 1. Add a new key to `secrets/auth.yaml`:
+
    ```yaml
    system/newSecret: "plaintext-value"
    ```
 
 2. Encrypt it:
+
    ```bash
    sops --encrypt --in-place secrets/auth.yaml
    ```
 
 3. Reference it in `modules/flake/sops.nix`:
+
    ```nix
    sops.secrets = {
      "system/newSecret".sopsFile = ../../secrets/auth.yaml;
@@ -192,17 +195,20 @@ nix shell nixpkgs#sops -c sops secrets/auth.yaml
 When adding a new host, its SSH host key must be added as an age recipient:
 
 1. Get the new host's SSH public key (after first boot):
+
    ```bash
    ssh-keyscan -t ed25519 <new-host> | ssh-to-age
    # Output: age1...
    ```
 
 2. Add the recipient to `secrets/auth.yaml`:
+
    ```bash
    sops --add-age <age-recipient> secrets/auth.yaml
    ```
 
 3. Re-encrypt all secrets for the new recipient set:
+
    ```bash
    sops --encrypt --in-place secrets/auth.yaml
    ```
@@ -214,6 +220,7 @@ When adding a new host, its SSH host key must be added as an age recipient:
 **Backup your age private keys!** The SSH host private keys (`/etc/ssh/ssh_host_ed25519_key`) are the only way to decrypt secrets. If you lose them (e.g., reinstall without backup), you cannot recover the secrets.
 
 Consider exporting age keys to a secure offline backup:
+
 ```bash
 ssh-to-age -private < /etc/ssh/ssh_host_ed25519_key > ~/age-key-backup.txt
 # Store ~/age-key-backup.txt securely (password manager, encrypted USB, etc.)
@@ -256,6 +263,14 @@ It is automatically available as `config.flake.modules.nixos.my-service` / `conf
 The flake is bootstrapped by `flake.nix:62` → `inputs.import-tree ./modules`. `import-tree` recursively imports every `.nix` file under `modules/` as a flake-parts module. `flake-parts` merges them, exposing `config.flake.modules.*`, `config.flake.nixosConfigurations`, and `config.flake.homeConfigurations` (generated in `modules/flake/nixos.nix:44` and `modules/flake/home.nix:19`).
 
 `modules/flake/variables.nix` declares `user.*` options; `modules/hosts/variables.nix` provides the concrete values. Per-host `wallpaper` + `base16Scheme` flow into both NixOS and Home Manager via shared Stylix modules.
+
+## Community
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Adega318/nixos-dendritic&type=Date&theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Adega318/nixos-dendritic&type=Date" />
+  <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Adega318/nixos-dendritic&type=Date" />
+</picture>
 
 ## License
 
