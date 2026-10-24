@@ -41,6 +41,8 @@
           portfolio
         ];
 
+        plasma-manager.override = false;
+
         home.packages = with pkgs; [
           winboat # windows as a container
           authenticator # Two factor authenticatort

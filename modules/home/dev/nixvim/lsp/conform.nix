@@ -6,12 +6,16 @@
         extraPackages = with pkgs; [
           # Nix
           nixfmt
+          # Python
+          ruff
           # Rust
           rustfmt
           leptosfmt
           # Markdown
           markdownlint-cli
           # Golang
+          go # provides gofmt
+          gotools # provides goimports
           golangci-lint
           # Js, CSS, Yaml, Markdown, GraphQL
           prettier
@@ -27,8 +31,8 @@
           settings = {
             notify_on_error = true;
             format_on_save = {
-              lspFallback = true;
-              timeoutMs = 5000;
+              lsp_format = "fallback";
+              timeout_ms = 5000;
             };
             formatters_by_ft = {
               python = [
@@ -56,30 +60,13 @@
                 "leptosfmt"
                 "rustfmt"
               ];
-              javascript = [
-                "prettier"
-              ];
-              html = [
-                "djlint"
-              ];
-              css = [
-                "prettier"
-              ];
-              yaml = [
-                "prettier"
-              ];
+              javascript = [ "prettier" ];
+              html = [ "djlint" ];
+              css = [ "prettier" ];
+              yaml = [ "prettier" ];
             };
 
-            formatters.leptosfmt.condition.__raw = ''
-              function(_, ctx)
-                local manifest = vim.fs.find("Cargo.toml", { path = ctx.dirname, upward = true })[1]
-                if not manifest then return false end
-                for line in io.lines(manifest) do
-                  if line:match("^%s*leptos") then return true end
-                end
-                return false
-              end
-            '';
+            formatters.nixfmt.args = [ "-" ];
           };
         };
       };
