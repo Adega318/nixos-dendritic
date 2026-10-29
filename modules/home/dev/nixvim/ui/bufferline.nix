@@ -41,6 +41,26 @@
             desc = "Switch to Other Buffer";
           };
         }
+        {
+          mode = [
+            "n"
+          ];
+          key = "<A-h>";
+          action = "<Cmd>BufferLineMovePrev<CR>";
+          options = {
+            desc = "Move Buffer to the Left";
+          };
+        }
+        {
+          mode = [
+            "n"
+          ];
+          key = "<A-l>";
+          action = "<Cmd>BufferLineMoveNext<CR>";
+          options = {
+            desc = "Move Buffer to the Right";
+          };
+        }
       ];
     };
   };
