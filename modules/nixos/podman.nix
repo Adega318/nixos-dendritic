@@ -1,21 +1,26 @@
 { config, ... }:
+let
+  flakeConfig = config;
+in
 {
   flake.modules.nixos.podman =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       virtualisation = {
         podman = {
           enable = true;
-          dockerCompat = true;
+          dockerCompat = !config.virtualisation.docker.enable;
           defaultNetwork.settings.dns_enabled = true;
         };
-        containers.registries.search = [
-          "docker.io"
+        containers.registries.settings.registry = [
+          {
+            location = "docker.io";
+          }
         ];
         oci-containers.backend = "podman";
       };
 
-      users.extraGroups.podman.members = [ config.user.username ];
+      users.extraGroups.podman.members = [ flakeConfig.user.username ];
 
       environment = {
         systemPackages = with pkgs; [
@@ -24,7 +29,6 @@
           podman-desktop # desktop app for podman
           kubectl
           podman-compose
-          lazydocker
         ];
         sessionVariables = {
           PODMAN_COMPOSE_WARNING_LOGS = "false";

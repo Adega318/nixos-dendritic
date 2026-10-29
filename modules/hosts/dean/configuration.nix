@@ -10,6 +10,7 @@
     module = {
       imports = with config.flake.modules.nixos; [
         bluetooth
+        docker
         plymouth
         podman
 
