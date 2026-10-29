@@ -240,6 +240,26 @@
         "type": "github"
       }
     },
+    "gauger": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793313295,
+        "narHash": "sha256-IVtywHKs9mXTXk9uRMImZnQ1LSVH/+kCbbGHjXInvSM=",
+        "owner": "Adega318",
+        "repo": "gauger-rs",
+        "rev": "c69293d0126442c0f16d22630961b7186a24f8a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Adega318",
+        "repo": "gauger-rs",
+        "type": "github"
+      }
+    },
     "gnome-shell": {
       "flake": false,
       "locked": {
@@ -471,6 +491,7 @@
         "antigravity-nix": "antigravity-nix",
         "colibri": "colibri",
         "flake-parts": "flake-parts",
+        "gauger": "gauger",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
         "nixos-hardware": "nixos-hardware",

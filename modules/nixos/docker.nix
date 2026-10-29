@@ -1,4 +1,4 @@
-{ config, ... }:
+{ inputs, config, ... }:
 {
   flake.modules.nixos.docker =
     { pkgs, ... }:
@@ -14,6 +14,7 @@
         dive # look into docker image layers
         docker-compose # start group of containers for dev
         lazydocker
+        inputs.gauger.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
     };
 }

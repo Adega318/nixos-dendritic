@@ -49,12 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Recuncho
-    recuncho = {
-      url = "git+https://gitea.eadega.com/adega/recuncho.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Zen browser
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -73,6 +67,18 @@
     # Pportainer
     portainer-on-nixos = {
       url = "git+https://gitlab.com/cbleslie/portainer-on-nixos.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Recuncho
+    recuncho = {
+      url = "git+https://gitea.eadega.com/adega/recuncho.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Gauger
+    gauger = {
+      url = "github:Adega318/gauger-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

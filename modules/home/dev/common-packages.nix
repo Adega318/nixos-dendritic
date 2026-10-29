@@ -32,6 +32,8 @@
         ncdu
         ## SECURITY
         lynis
+        ## Github Actions
+        act
       ];
     };
 }

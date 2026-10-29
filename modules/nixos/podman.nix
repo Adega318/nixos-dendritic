@@ -1,4 +1,4 @@
-{ config, ... }:
+{ inputs, config, ... }:
 let
   flakeConfig = config;
 in
@@ -29,6 +29,7 @@ in
           podman-desktop # desktop app for podman
           kubectl
           podman-compose
+          inputs.gauger.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
         sessionVariables = {
           PODMAN_COMPOSE_WARNING_LOGS = "false";
