@@ -128,6 +128,10 @@
         configFile = {
           "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
           "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "SF";
+          kdeglobals.General = {
+            TerminalApplication = "alacritty";
+            TerminalService = "Alacritty.desktop";
+          };
         };
       };
     };

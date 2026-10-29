@@ -10,5 +10,6 @@
         dynamic_padding = true;
       };
     };
+    home.sessionVariables.TERMINAL = "alacritty";
   };
 }
