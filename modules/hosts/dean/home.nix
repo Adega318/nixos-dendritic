@@ -23,6 +23,7 @@
 
           # DEV
           dev
+          rustpkgs
 
           # GAMES
           heroic

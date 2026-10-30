@@ -41,6 +41,7 @@
 
         initContent = ''
           export GITHUB_TOKEN="$(gh auth token)"
+          export PATH="$PATH:$HOME/.cargo/bin"
           export NIX_CONFIG="access-tokens = github.com=$GITHUB_TOKEN"
           pfetch
         '';

@@ -15,6 +15,7 @@
         maven
         ## C
         gnumake
+        gcc
 
         # COMMANDS
         ## COMPRESED
