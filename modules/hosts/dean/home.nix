@@ -10,6 +10,11 @@
           "ventoy-1.1.18"
         ];
 
+        # HACK: permit gtk2
+        nixpkgs.config.problems.handlers = {
+          "gtk+".broken = "warn";
+        };
+
         imports = with config.flake.modules.homeManager; [
           bottles
           discord

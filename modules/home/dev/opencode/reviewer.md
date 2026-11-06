@@ -1,6 +1,6 @@
 ---
 description: Reviews code for correctness, security, maintainability, and unnecessary complexity
-mode: subagent
+mode: all
 permission:
   edit: deny
 ---
