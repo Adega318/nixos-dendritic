@@ -50,7 +50,37 @@
           undofile = true; # Build-in persistent undo
 
           termguicolors = lib.mkForce pkgs.stdenv.hostPlatform.isLinux;
+          autoread = true;
         };
+
+        autoCmd = [
+          {
+            event = [
+              "FocusGained"
+              "BufEnter"
+              "CursorHold"
+              "CursorHoldI"
+            ];
+            command = "checktime";
+          }
+        ];
+
+        extraConfigLua = ''
+          local timer = vim.uv.new_timer()
+
+          timer:start(1000, 1000, vim.schedule_wrap(function()
+            if vim.api.nvim_get_mode().mode ~= "c" then
+              vim.cmd("checktime")
+            end
+          end))
+
+          vim.api.nvim_create_autocmd("VimLeavePre", {
+            callback = function()
+              timer:stop()
+              timer:close()
+            end,
+          })
+        '';
       };
     };
 }
