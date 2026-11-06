@@ -22,12 +22,12 @@
           gtk
           latex
           librewolf
-          opencode
           plasma-manager
           udiskie
 
           # DEV
           dev
+          opencode
           rustpkgs
 
           # GAMES
