@@ -14,9 +14,16 @@
     programs.opencode = {
       enable = true;
 
-      cli.theme = {
-        name = "system";
-        mode = "system";
+      cli = {
+        theme = {
+          name = "system";
+          mode = "system";
+        };
+        plugins = [
+          "oh-my-opencode-slim"
+          "context7"
+          "@plannotator/opencode"
+        ];
       };
 
       agents = {
