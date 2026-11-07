@@ -18,5 +18,13 @@
         extensions.force = true;
       };
     };
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "x-scheme-handler/http" = "librewolf.desktop";
+        "x-scheme-handler/https" = "librewolf.desktop";
+      };
+    };
   };
 }

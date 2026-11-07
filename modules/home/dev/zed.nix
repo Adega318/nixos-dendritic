@@ -3,6 +3,12 @@
     { pkgs, ... }:
     {
       home.sessionVariables.VISUAL = "zeditor";
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "text/plain" = "dev.zed.Zed.desktop";
+        };
+      };
 
       programs.zed-editor = {
         enable = true;

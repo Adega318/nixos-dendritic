@@ -131,6 +131,8 @@
           kdeglobals.General = {
             TerminalApplication = "alacritty";
             TerminalService = "Alacritty.desktop";
+            BrowserApplication = "librewolf.desktop";
+            TextEditor = "dev.zed.Zed.desktop";
           };
         };
       };
