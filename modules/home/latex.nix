@@ -10,6 +10,7 @@
         enable = true;
         extraPackages = tpkgs: {
           inherit (tpkgs)
+            xetex
             scheme-basic
             latexmk
             chktex
@@ -46,6 +47,8 @@
             # ── Tables ───────────────────────────────────
             booktabs
             tabular2
+            xltabular
+            ltablex
 
             # ── Colors, graphics & TikZ ──────────────────
             pgf # TikZ + PGF
