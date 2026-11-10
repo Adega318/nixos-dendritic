@@ -1,6 +1,11 @@
 {
   flake.modules.homeManager.herdr =
-    { config, pkgs, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       herdr = if config.programs.herdr.package != null then config.programs.herdr.package else pkgs.herdr;
       opencodeIntegration = "${herdr}/share/herdr/integrations/opencode";
@@ -15,19 +20,15 @@
         mutableSettings = true;
       };
 
-      programs.opencode.cli.plugins = [ "./herdr-opencode" ];
+      programs.opencode.cli.plugins = lib.optionals config.programs.opencode.enable [
+        "./herdr-opencode"
+      ];
 
-      xdg.configFile = {
+      xdg.configFile = lib.mkIf config.programs.opencode.enable {
         "opencode/plugins/herdr-agent-state.js".source = "${opencodeIntegration}/herdr-agent-state.js";
         "opencode/herdr-tui-session.js".source = "${opencodeIntegration}/herdr-tui-session.js";
         "opencode/herdr-opencode".source = "${opencodeTui}/herdr-opencode";
       };
 
-      assertions = [
-        {
-          assertion = config.programs.opencode.enable;
-          message = "The Herdr OpenCode integration requires `programs.opencode.enable = true`.";
-        }
-      ];
     };
 }

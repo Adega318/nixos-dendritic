@@ -28,6 +28,7 @@
           # DEV
           dev
           opencode
+          herdr
           rustpkgs
 
           # GAMES
