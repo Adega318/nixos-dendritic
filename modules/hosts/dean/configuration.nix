@@ -8,6 +8,11 @@
 
     # Modules
     module = {
+      # HACK: remove this packages when not needed
+      nixpkgs.config.permittedInsecurePackages = [
+        "python3.14-python-jose-3.5.0"
+      ];
+
       imports = with config.flake.modules.nixos; [
         bluetooth
         docker
