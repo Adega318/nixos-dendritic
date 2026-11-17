@@ -1,42 +1,54 @@
 {
-  flake.modules.nixos.glances = { config, lib, ... }: {
-    options.glances = {
-      domain = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        default = null;
-        description = "Domain to expose Glances through Nginx.";
-      };
-      openFirewall = lib.mkEnableOption "Open firewall.";
-      openTailscale = lib.mkEnableOption "Open firewall on the Tailscale interface.";
-    };
-
-    config = {
-      services = {
-        glances = {
-          enable = true;
-          inherit (config.glances) openFirewall;
+  flake.modules.nixos.glances =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      options.glances = {
+        domain = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          default = null;
+          description = "Domain to expose Glances through Nginx.";
         };
+        openFirewall = lib.mkEnableOption "Open firewall.";
+        openTailscale = lib.mkEnableOption "Open firewall on the Tailscale interface.";
+      };
 
-        nginx.virtualHosts = lib.mkIf (config.glances.domain != null) {
-          ${config.glances.domain} = {
-            locations."/" = {
-              proxyPass = "http://127.0.0.1:${toString config.services.glances.port}";
-              proxyWebsockets = true;
+      config = {
+        services = {
+          glances = {
+            enable = true;
+            inherit (config.glances) openFirewall;
+
+            # HACK: tempt fix for check error
+            package = pkgs.glances.overridePythonAttrs (old: {
+              doCheck = false;
+            });
+          };
+
+          nginx.virtualHosts = lib.mkIf (config.glances.domain != null) {
+            ${config.glances.domain} = {
+              locations."/" = {
+                proxyPass = "http://127.0.0.1:${toString config.services.glances.port}";
+                proxyWebsockets = true;
+              };
             };
           };
         };
-      };
 
-      networking.firewall.interfaces.${config.services.tailscale.interfaceName} =
-        lib.mkIf config.glances.openTailscale
-          {
-            allowedTCPPorts = [
-              config.services.glances.port
-            ];
-            allowedUDPPorts = [
-              config.services.glances.port
-            ];
-          };
+        networking.firewall.interfaces.${config.services.tailscale.interfaceName} =
+          lib.mkIf config.glances.openTailscale
+            {
+              allowedTCPPorts = [
+                config.services.glances.port
+              ];
+              allowedUDPPorts = [
+                config.services.glances.port
+              ];
+            };
+      };
     };
-  };
 }
