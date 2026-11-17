@@ -18,6 +18,7 @@
         docker
         plymouth
         podman
+        vm
 
         # CORE
         core
